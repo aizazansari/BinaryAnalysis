@@ -1,3 +1,5 @@
+#script used to run ida in terminal and call the create_decimals script for every arm binary
+
 import subprocess
 import os
 path = 'C:\\Users\\user\\Downloads\\armhf\\'

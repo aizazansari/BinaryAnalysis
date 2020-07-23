@@ -1,0 +1,6 @@
+python ./build_voc2012_data.py \
+  --image_folder="/home/deebthik/Downloads/models-master/research/deeplab/datasets/custom_datasets/plc_binaries_dataset_2/JPEGImages" \
+  --semantic_segmentation_folder="/home/deebthik/Downloads/models-master/research/deeplab/datasets/custom_datasets/plc_binaries_dataset_2/SegmentationClassRaw" \
+  --list_folder="/home/deebthik/Downloads/models-master/research/deeplab/datasets/custom_datasets/plc_binaries_dataset_2/ImageSets/Segmentation" \
+  --image_format="png" \
+  --output_dir="/home/deebthik/Downloads/models-master/research/deeplab/datasets/custom_datasets/plc_binaries_dataset_2/tfrecord_1"

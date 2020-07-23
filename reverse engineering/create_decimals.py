@@ -1,13 +1,14 @@
+#script used to reverse engineer binary and write disassembly to csv file
 import idc
 import idautils
 import idaapi
 idaapi.autoWait()
-file_name = "C:\\Users\\user\\Downloads\\decimal_files\\decimal.txt"
+file_name = "C:\\Users\\user\\Downloads\\decimal_files\\decimal.csv"
 if os.path.isfile(file_name):
     expand = 1
     while True:
         expand += 1
-        new_file_name = file_name.split(".txt")[0] + str(expand) + ".txt"
+        new_file_name = file_name.split(".csv")[0] + str(expand) + ".csv"
         if os.path.isfile(new_file_name):
             continue
         else:
@@ -19,7 +20,7 @@ all_segments = []
 for s in idautils.Segments():
 	all_segments.append([s,idc.SegName(s)])
 i = 0
-selected = ['.init','.plt','.text','.fini','.init_array','.fini_array','.jcr','.got','.data']
+
 segments = []
 while i<(len(all_segments)-1):
 	if idc.isCode(idc.GetFlags(all_segments[i][0])) or idc.isData(idc.GetFlags(all_segments[i][0])):
