@@ -4,6 +4,8 @@ import idautils
 import idaapi
 idaapi.autoWait()
 file_name = "C:\\Users\\user\\Downloads\\decimal_files\\decimal.csv"
+
+#used to generate incremental filename
 if os.path.isfile(file_name):
     expand = 1
     while True:
@@ -16,11 +18,14 @@ if os.path.isfile(file_name):
             break
 
 file = open(file_name,'w')
+
+#appending all segments and their address ranges
 all_segments = []
 for s in idautils.Segments():
 	all_segments.append([s,idc.SegName(s)])
 i = 0
 
+#selecting segments which are code or data
 segments = []
 while i<(len(all_segments)-1):
 	if idc.isCode(idc.GetFlags(all_segments[i][0])) or idc.isData(idc.GetFlags(all_segments[i][0])):
@@ -29,6 +34,7 @@ while i<(len(all_segments)-1):
 
 
 string = "address|type|disassembly|bytes"
+#iterating over every segment to write address,type,disassembly,bytes to csv file
 for segment in segments:
 	for address in range(segment[0],segment[1]):
 		if idc.isCode(idc.GetFlags(address)):

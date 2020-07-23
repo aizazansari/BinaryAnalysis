@@ -1,3 +1,4 @@
+#script used to convert binary file to decimal file (4 bytes/line)
 import sys
 import os
 arr = os.listdir('/Users/aizazansari/Desktop/Uni Data/MOMA/armhf')

@@ -1,3 +1,5 @@
+#basic approach - not working since it never stops
+
 address = 0
 
 while 1:
@@ -19,7 +21,7 @@ while 1:
 
 
 
-### faster approach
+### faster than previous one - skips over last section however (bug?)
 
 address = 0
 if idc.isCode(idc.GetFlags(address)):
@@ -34,7 +36,7 @@ while 1:
 		print address
 
 
-### hybrid approach - combined - using this one
+### hybrid approach - works perfectly fine
 file = open("combined.txt","w")
 all_segments = []
 for s in idautils.Segments():
@@ -65,7 +67,7 @@ for segment in segments:
 
 file.close()
 
-### hybrid approach - code
+### hybrid approach - for code only
 
 address = 0
 file = open("sample.txt", "w")
@@ -94,7 +96,7 @@ while 1:
 
 file.close()
 
-### hybrid approach - data
+### hybrid approach - for data only
 
 address = 0
 file = open("sample-data.txt", "w")
@@ -123,63 +125,5 @@ while 1:
 
 file.close()
 
-### writing addresses
-
-file = open("MyFile.txt", "w")
-
-address = 0
-
-while 1:
-	if idc.isCode(idc.GetFlags(address)):
-		file.write("Code " + str(address))
-	elif idc.isData(idc.GetFlags(address)):
-		file.write("Data " + str(address))
-	elif idc.isTail(idc.GetFlags(address)):
-		file.write("Tail " + str(address))
-	elif idc.isHead(idc.GetFlags(address)):
-		file.write("Head " + str(address))
-	elif idc.isUnknown(idc.GetFlags(address)):
-		file.write("Unknown " + str(address))
-
-	else:
-		break
-
-	address = address + 1
-
-file.close()
 
 
-
-### batch file generation
-
-import os
-import subprocess
-import glob
-paths = glob.glob("*")
-ida_path = os.path.join(os.environ['PROGRAMFILES'], "IDA", "idat.exe")
-for file_path in paths:
-	if file_path.endswith(".py"):
- 		continue
-
-	subprocess.call([ida_path, "-B", file_path])
-
-
-### running script on file
-
-import idc
-import idaapi
-import idautils
-idaapi.autoWait()
-count = 0
-for func in idautils.Functions():
- # Ignore Library Code
-	flags = idc.get_func_attr(func, FUNCATTR_FLAGS)
-	if flags & FUNC_LIB:
-		continue
-	for instru in idautils.FuncItems(func):
-		count += 1
-f = open("instru_count.txt", 'w')
-print_me = "Instruction Count is %d" % (count)
-f.write(print_me)
-f.close()
-idc.Exit(0)
