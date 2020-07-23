@@ -1,3 +1,5 @@
+#this script is used to change colors of image predicted by Deeplab (colors were flipped and were of different shade)
+
 import numpy as np
 from PIL import Image
 import os

@@ -1,3 +1,0 @@
-python3 "remove_gt_colormap.py" \
-  --original_gt_folder="/home/deebthik/Downloads/models-master/research/deeplab/datasets/custom_datasets/SegmentationClass" \
-  --output_dir="/home/deebthik/Downloads/models-master/research/deeplab/datasets/custom_datasets/SegmentationClassRaw_Final"
